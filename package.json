@@ -16,7 +16,6 @@
     "chart.js": "^4.4.1",
     "react-chartjs-2": "^5.2.0",
     "chartjs-chart-box-plot": "^4.1.0"
-    // Remove "sharp" unless you specifically need image processing on the server—it's not required for front-end builds and causes problems on Netlify.
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
