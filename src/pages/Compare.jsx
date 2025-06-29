@@ -3,8 +3,32 @@ import Papa from 'papaparse'
 import * as XLSX from 'xlsx'
 import DataTable from '../components/DataTable'
 import { Chart, Line } from 'react-chartjs-2'
-import 'chart.js/auto'
-import 'chartjs-chart-box-and-violin-plot'
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Title,
+  Legend,
+} from 'chart.js'
+import {
+  BoxPlotController,
+  BoxAndWiskers,
+  BoxPlotChart,
+} from 'chartjs-chart-box-and-violin-plot'
+
+// Register all needed chart types
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Title,
+  Legend,
+  BoxPlotController,
+  BoxAndWiskers,
+  BoxPlotChart
+)
+
 
 export const DataContext = createContext()
 
