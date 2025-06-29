@@ -8,15 +8,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "sharp": "^0.33.3",
-    "papaparse": "^5.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "xlsx": "^0.18.5",
     "react-router-dom": "^6.22.3",
+    "papaparse": "^5.4.1",
+    "xlsx": "^0.18.5",
     "chart.js": "^4.4.1",
     "react-chartjs-2": "^5.2.0",
-    "chartjs-chart-box-and-violin-plot": "^3.2.0"
+    "chartjs-chart-box-plot": "^4.1.0"
+    // Remove "sharp" unless you specifically need image processing on the server—it's not required for front-end builds and causes problems on Netlify.
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
