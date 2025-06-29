@@ -15,7 +15,8 @@
     "xlsx": "^0.18.5",
     "chart.js": "^4.4.1",
     "react-chartjs-2": "^5.2.0",
-    "chartjs-chart-box-plot": "^4.1.0"
+    "chartjs-chart-box-plot": "^3.3.0"
+    // "sharp": "^0.33.3" // Uncomment only if you need it and know how to handle native Node modules on Netlify
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
