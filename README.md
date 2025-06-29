@@ -28,6 +28,7 @@ If using Netlify, make sure the Node version is at least 18. A sample
 
 [build.environment]
   NODE_VERSION = "18"
+  NPM_FLAGS = "--legacy-peer-deps"
 ```
 
 ## Usage
@@ -42,3 +43,5 @@ Visit the home page to download a sample template and read basic instructions.
 
 This is a simplified proof of concept. More features such as charts, PDF/Excel export, and advanced statistics can be added.
 - The results table highlights devices with high CV (>5%). Line and box plot charts visualise trends across devices and over time.
+index.html
+New
