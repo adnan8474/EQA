@@ -32,13 +32,11 @@ If using Netlify, make sure the Node version is at least 18. A sample
 
 ## Usage
 
-1. Upload a `.csv` or `.xlsx` file in the format:
+Visit the home page to download a sample template and read basic instructions.
 
-   ```
-   Device ID,Test Name,Result,Date,Sample ID,Operator ID
-   ABL90-01,Glucose,5.6,2025-06-01,SMP001,USR001
-   ```
-2. Select a test from the dropdown and click **Run Analysis**.
-3. See console output for calculated mean, SD, and CV for each device.
+1. Download `template.csv` and fill it with your results.
+2. Go to the **Analysis** page and upload the completed file (`.csv` or `.xlsx`).
+3. Select a test from the dropdown and click **Run Analysis**.
+4. See console output for calculated mean, SD and CV for each device.
 
 This is a simplified proof of concept. More features such as charts, PDF/Excel export, and advanced statistics can be added.

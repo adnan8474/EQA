@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { DataContext } from '../App'
+import { DataContext } from '../pages/Compare'
 
 export default function DataTable() {
   const { data } = useContext(DataContext)
