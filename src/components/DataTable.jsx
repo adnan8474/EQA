@@ -6,7 +6,7 @@ export default function DataTable() {
   if (!data || data.length === 0) return null
   const headers = Object.keys(data[0])
   return (
-    <table className="min-w-full table-auto border">
+    <table className="min-w-full table-auto border text-sm">
       <thead className="bg-gray-100">
         <tr>
           {headers.map((h) => (
@@ -18,7 +18,7 @@ export default function DataTable() {
       </thead>
       <tbody>
         {data.map((row, i) => (
-          <tr key={i} className="border-b">
+          <tr key={i} className="border-b odd:bg-gray-50">
             {headers.map((h) => (
               <td key={h} className="px-2 py-1 border-r">
                 {row[h]}

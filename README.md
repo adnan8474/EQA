@@ -2,7 +2,7 @@
 
 This project provides a lightweight, browser-based tool for Point-of-Care Testing professionals to compare device results prior to official EQA reports.
 
-The application is built with React, Vite and Tailwind CSS. It parses CSV and XLSX files, displays the data in a table, and allows filtering by test name. A basic per-device analysis can be run in the browser.
+The application is built with React, Vite and Tailwind CSS. It parses CSV and XLSX files, displays the data in a table, and allows filtering by test name. A basic per-device analysis can be run in the browser with the results shown in a summary table.
 
 ## Development
 
@@ -37,6 +37,6 @@ Visit the home page to download a sample template and read basic instructions.
 1. Download `template.csv` and fill it with your results.
 2. Go to the **Analysis** page and upload the completed file (`.csv` or `.xlsx`).
 3. Select a test from the dropdown and click **Run Analysis**.
-4. See console output for calculated mean, SD and CV for each device.
+4. The calculated mean, SD and CV for each device will appear in a results table below the data.
 
 This is a simplified proof of concept. More features such as charts, PDF/Excel export, and advanced statistics can be added.
