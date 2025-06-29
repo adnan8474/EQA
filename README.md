@@ -38,10 +38,8 @@ Visit the home page to download a sample template and read basic instructions.
 1. Download `template.csv` and fill it with your results.
 2. Go to the **Analysis** page and upload the completed file (`.csv` or `.xlsx`).
 3. Select a test from the dropdown and click **Run Analysis**.
-4. The calculated mean, SD and CV for each device will appear in a results table along with line and box plot charts.
-5. A deviation table shows the z-score and percentage deviation for every result.
+4. The calculated statistics include mean, SD, CV, median and IQR for each device. Line and box plot charts visualise trends.
+5. A deviation table shows the z-score and percentage deviation for every result, and you can export the analysis to CSV.
 
 This is a simplified proof of concept. More features such as charts, PDF/Excel export, and advanced statistics can be added.
 - The results table highlights devices with high CV (>5%). Line and box plot charts visualise trends across devices and over time.
-index.html
-New

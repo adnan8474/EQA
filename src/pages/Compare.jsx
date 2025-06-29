@@ -39,6 +39,41 @@ function App() {
   const [selectedTest, setSelectedTest] = useState('')
   const [analysis, setAnalysis] = useState(null)
 
+  const exportCSV = () => {
+    if (!analysis) return
+    const csv = Papa.unparse(analysis.deviceStats)
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'analysis.csv'
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  const computeStats = (values) => {
+    const mean = values.reduce((a, b) => a + b, 0) / values.length
+    let sd = null
+    let cv = null
+    if (values.length > 1) {
+      const variance =
+        values.reduce((a, b) => a + Math.pow(b - mean, 2), 0) /
+        (values.length - 1)
+      sd = Math.sqrt(variance)
+      cv = mean !== 0 ? (sd / mean) * 100 : 0
+    }
+    const sorted = [...values].sort((a, b) => a - b)
+    const mid = Math.floor(sorted.length / 2)
+    const median =
+      sorted.length % 2 === 0
+        ? (sorted[mid - 1] + sorted[mid]) / 2
+        : sorted[mid]
+    const q1 = sorted[Math.floor(sorted.length * 0.25)]
+    const q3 = sorted[Math.floor(sorted.length * 0.75)]
+    const iqr = q3 - q1
+    return { mean, sd, cv, median, iqr }
+  }
+
   const handleFile = (e) => {
     const file = e.target.files[0]
     if (!file) return
@@ -96,14 +131,8 @@ function App() {
     })
 
     const deviceStats = Object.entries(grouped).map(([device, results]) => {
-      const mean = results.reduce((a, b) => a + b, 0) / results.length
-      const variance =
-        results.length > 1
-          ? results.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / (results.length - 1)
-          : 0
-      const sd = Math.sqrt(variance)
-      const cv = mean !== 0 ? (sd / mean) * 100 : 0
-      return { device, mean, sd, cv, count: results.length }
+      const stats = computeStats(results)
+      return { device, count: results.length, ...stats }
     })
 
     const allResults = filtered.map((r) => Number(r.Result))
@@ -163,8 +192,10 @@ function App() {
       deviceStats: deviceStats.map((s) => ({
         device: s.device,
         mean: s.mean.toFixed(2),
-        sd: s.sd.toFixed(2),
-        cv: s.cv.toFixed(2),
+        sd: s.sd !== null ? s.sd.toFixed(2) : 'N/A',
+        cv: s.cv !== null ? s.cv.toFixed(2) : 'N/A',
+        median: s.median.toFixed(2),
+        iqr: s.iqr.toFixed(2),
         count: s.count,
       })),
       rows: rowsWithZ.map((r) => ({
@@ -193,6 +224,9 @@ function App() {
                   ))}
                 </select>
                 <button onClick={runAnalysis} className="bg-blue-500 text-white px-4 py-2 rounded whitespace-nowrap">Run Analysis</button>
+                {analysis && (
+                  <button onClick={exportCSV} className="bg-green-500 text-white px-4 py-2 rounded whitespace-nowrap">Export CSV</button>
+                )}
               </div>
               <DataTable />
             </div>
@@ -207,6 +241,9 @@ function App() {
                     <th className="px-2 py-1 border">Mean</th>
                     <th className="px-2 py-1 border">SD</th>
                     <th className="px-2 py-1 border">CV %</th>
+                    <th className="px-2 py-1 border">Median</th>
+                    <th className="px-2 py-1 border">IQR</th>
+                    <th className="px-2 py-1 border">n</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -221,6 +258,9 @@ function App() {
                           <span className="text-red-600 font-bold ml-1">!</span>
                         )}
                       </td>
+                      <td className="px-2 py-1 border-r text-right">{s.median}</td>
+                      <td className="px-2 py-1 text-right">{s.iqr}</td>
+                      <td className="px-2 py-1 text-right">{s.count}</td>
                     </tr>
                   ))}
                 </tbody>
